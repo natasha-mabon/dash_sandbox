@@ -14,10 +14,13 @@ import plotly.express as px
 
 app = dash.Dash()  # initialising dash app
 df = px.data.stocks()  # reading stock price dataset
+jman_blue = '#32819F'
 
 app.layout = html.Div(id='parent',
                       children=[
                           html.H1(id='H1', children='Styling using html components', style={'textAlign': 'center',
+                                                                                            'color': jman_blue,
+                                                                                            'font-family': 'arial',
                                                                                             'marginTop': 40,
                                                                                             'marginBottom': 40}),
 
@@ -27,6 +30,7 @@ app.layout = html.Div(id='parent',
                                            {'label': 'Apple', 'value': 'AAPL'},
                                            {'label': 'Amazon', 'value': 'AMZN'},
                                        ],
+                                       style={'font-family':'arial'},
                                        value='GOOG'),
                           dcc.Graph(id='bar_plot')
                       ])
@@ -36,13 +40,16 @@ app.layout = html.Div(id='parent',
               [Input(component_id='dropdown', component_property='value')])
 def graph_update(dropdown_value):
     print(dropdown_value)
-    fig = go.Figure([go.Scatter(x=df['date'], y=df['{}'.format(dropdown_value)], \
-                                line=dict(color='firebrick', width=4))
+    fig = go.Figure([go.Scatter(x=df['date'],
+                                y=df['{}'.format(dropdown_value)],
+                                line=dict(color=jman_blue, width=4))
                      ])
 
     fig.update_layout(title='Stock prices over time',
                       xaxis_title='Dates',
-                      yaxis_title='Prices'
+                      yaxis_title='Prices',
+                      template='plotly_white',
+                      title_font_family='arial'
                       )
     return fig
 
