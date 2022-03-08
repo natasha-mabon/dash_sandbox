@@ -4,8 +4,8 @@
 # - Package imports, run install script if there are any issues with this ------------------------------------------- #
 
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 import plotly.graph_objects as go
 import plotly.express as px
 
@@ -13,7 +13,6 @@ import plotly.express as px
 
 app = dash.Dash()  # initialising dash app
 df = px.data.stocks()  # reading stock price dataset
-
 
 def stock_prices():
     # Function for creating line chart showing Google stock prices over time
@@ -34,4 +33,8 @@ app.layout = html.Div(id='parent', children=[
     dcc.Graph(id='line_plot', figure=stock_prices())
 ]
                       )
+
+if __name__ == '__main__':
+    app.run_server()
+
 print('Script Completed.')
