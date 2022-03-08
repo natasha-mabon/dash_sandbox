@@ -16,13 +16,14 @@ style = config.Style()
 
 app = dash.Dash()  # initialising dash app
 df = px.data.stocks()  # reading stock price dataset
-jman_blue = style.jman_blue
+preferred_blue = style.blue
+preferred_font = style.preferred_font
 
 app.layout = html.Div(id='parent',
                       children=[
                           html.H1(id='H1', children='Styling using html components', style={'textAlign': 'center',
-                                                                                            'color': jman_blue,
-                                                                                            'font-family': 'arial',
+                                                                                            'color': preferred_blue,
+                                                                                            'font-family': preferred_font,
                                                                                             'marginTop': 40,
                                                                                             'marginBottom': 40}),
 
@@ -32,7 +33,7 @@ app.layout = html.Div(id='parent',
                                            {'label': 'Apple', 'value': 'AAPL'},
                                            {'label': 'Amazon', 'value': 'AMZN'},
                                        ],
-                                       style={'font-family':'arial'},
+                                       style={'font-family': preferred_font},
                                        value='GOOG'),
                           dcc.Graph(id='bar_plot')
                       ])
@@ -44,14 +45,14 @@ def graph_update(dropdown_value):
     print(dropdown_value)
     fig = go.Figure([go.Scatter(x=df['date'],
                                 y=df['{}'.format(dropdown_value)],
-                                line=dict(color=jman_blue, width=4))
+                                line=dict(color=preferred_blue, width=4))
                      ])
 
     fig.update_layout(title='Stock prices over time',
                       xaxis_title='Dates',
                       yaxis_title='Prices',
                       template='plotly_white',
-                      title_font_family='arial'
+                      title_font_family=preferred_font
                       )
     return fig
 

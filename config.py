@@ -17,4 +17,5 @@ class Style:
     Define style parameters for the project such as colours, font families
     """
     def __init__(self):
-        self.jman_blue = '#32819F'
+        self.blue = '#32819F'
+        self.preferred_font = 'arial'
