@@ -9,12 +9,14 @@ from dash import dcc
 from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import plotly.express as px
+import config
+style = config.Style()
 
 # - Script ---------------------------------------------------------------------------------------------------------- #
 
 app = dash.Dash()  # initialising dash app
 df = px.data.stocks()  # reading stock price dataset
-jman_blue = '#32819F'
+jman_blue = style.jman_blue
 
 app.layout = html.Div(id='parent',
                       children=[

@@ -11,3 +11,10 @@ class Requirements:
         # list all packages used as those which are already installed will be ignored and won't slow down the install
         # script
         self.required_packages = ['dash', 'plotly']
+
+class Style:
+    """
+    Define style parameters for the project such as colours, font families
+    """
+    def __init__(self):
+        self.jman_blue = '#32819F'
